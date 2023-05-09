@@ -1,5 +1,7 @@
+import RegisterModal from './components/organisms/Modal/RegisterModal';
 import './globals.css';
 import { Nunito } from 'next/font/google';
+import { ToasterProvider } from './providers';
 
 const nunito = Nunito({ subsets: ['latin'] });
 
@@ -15,7 +17,11 @@ export default function RootLayout({
 }) {
 	return (
 		<html lang='en'>
-			<body className={nunito.className}>{children}</body>
+			<body className={nunito.className}>
+				<ToasterProvider />
+				<RegisterModal />
+				<div className=''>{children}</div>
+			</body>
 		</html>
 	);
 }
