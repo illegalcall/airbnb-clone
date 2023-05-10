@@ -6,12 +6,21 @@ import Avatar from '../../atoms/Avatar';
 import MenuItem from './MenuItem';
 import { useRouter } from 'next/navigation';
 import useRegisterModal from '@/app/hooks/useRegisterModal';
+import useLoginModal from '@/app/hooks/useLoginModal';
+import { User } from '@prisma/client';
+import { signOut } from 'next-auth/react';
+import { SafeUser } from '@/app/types';
 
-interface UserMenuProps {}
+interface UserMenuProps {
+	currentUser: SafeUser | null;
+}
 
-const UserMenu: React.FC<UserMenuProps> = ({}) => {
+const UserMenu: React.FC<UserMenuProps> = ({
+	currentUser,
+}) => {
 	const router = useRouter();
 	const registerModal = useRegisterModal();
+	const loginModal = useLoginModal();
 
 	const [isOpen, setIsOpen] = useState(false);
 
@@ -58,7 +67,7 @@ const UserMenu: React.FC<UserMenuProps> = ({}) => {
 				>
 					<AiOutlineMenu />
 					<div className='hidden md:block'>
-						<Avatar src={'/images/placeholder.jpg'} />
+						<Avatar src={currentUser?.image} />
 					</div>
 				</div>
 				{isOpen && (
@@ -77,12 +86,33 @@ const UserMenu: React.FC<UserMenuProps> = ({}) => {
           '
 					>
 						<div className='flex flex-col cursor-pointer'>
-							<>
-								<MenuItem
-									label='Sign up'
-									onClick={registerModal.onOpen}
-								/>
-							</>
+							{currentUser ? (
+								<>
+									<MenuItem
+										label='My trips'
+										onClick={() => {}}
+									/>
+									<MenuItem
+										label='My favorites'
+										onClick={() => {}}
+									/>
+									<MenuItem
+										label='Logout'
+										onClick={() => signOut()}
+									/>
+								</>
+							) : (
+								<>
+									<MenuItem
+										label='Sign up'
+										onClick={registerModal.onOpen}
+									/>
+									<MenuItem
+										label='Login'
+										onClick={loginModal.onOpen}
+									/>
+								</>
+							)}
 						</div>
 					</div>
 				)}
