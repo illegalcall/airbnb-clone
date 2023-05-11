@@ -7,12 +7,17 @@ import getCurrentUser from './actions/getCurrentUser';
 import { Navbar } from './components/organisms';
 import RentModal from './components/organisms/Modal/RentModal';
 import SearchModal from './components/organisms/Modal/SearchModal';
+import type { Metadata } from 'next';
 
 const nunito = Nunito({ subsets: ['latin'] });
 
-export const metadata = {
+export const metadata: Metadata = {
 	title: 'Airbnb',
-	description: 'Airbnb clone',
+	description:
+		'Airbnb clone made using Next.js and TailwindCSS',
+	icons: {
+		icon: './airbnb-logo.svg',
+	},
 };
 
 export default async function RootLayout({
