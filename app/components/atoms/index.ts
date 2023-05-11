@@ -2,3 +2,8 @@ export { default as Avatar } from './Avatar';
 export { default as Button } from './Button';
 export { default as TextInput } from './TextInput';
 export { default as Heading } from './Heading';
+export { default as CategoryInput } from './CategoryInput';
+export { default as CountrySelect } from './CountrySelect';
+export { default as Map } from './Map';
+export { default as Counter } from './Counter';
+export { default as ImageUpload } from './ImageUpload';
