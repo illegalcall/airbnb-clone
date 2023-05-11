@@ -7,3 +7,4 @@ export { default as CountrySelect } from './CountrySelect';
 export { default as Map } from './Map';
 export { default as Counter } from './Counter';
 export { default as ImageUpload } from './ImageUpload';
+export { default as HeartButton } from './HeartButton';
